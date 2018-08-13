@@ -1,0 +1,16 @@
+version: '2.3'
+services:
+  sonar:
+    build:
+      context: ./nginx
+      dockerfile: Dockerfile-sonar
+    mem_limit: 1000000000
+    memswap_limit: 2000000000
+    mem_reservation: 1024m
+    volumes:
+      - type: bind
+        source: $HOME/sonarqube-data
+        target: /opt/sonarqube/data
+    ports:
+      - "9443:443"
+      - "9900:9000"
